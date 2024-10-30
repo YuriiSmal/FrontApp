@@ -10,7 +10,7 @@ export class ErrorComponent implements OnInit {
   errorMessage: string = 'Opps, is an error occurred!';
 
   ngOnInit(): void {
-    console.log('ngOnInit');
+    //console.log('ngOnInit');
   }
 
 }

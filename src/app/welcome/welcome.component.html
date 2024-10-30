@@ -4,5 +4,10 @@
 </div>
 
 <div class="container">
-  <button (click)="getWelcomeMessage()" class = "btn btn-success" >Get Welcome Message</button>
+  <button (click)="getWelcomeMessageWithParameter()" class="btn btn-success">Get Welcome Message</button>
+</div>
+
+<div class="container" *ngIf="welcomeMessageFromService">
+  <H2>Your Customized</H2>
+  {{ welcomeMessageFromService }}
 </div>

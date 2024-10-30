@@ -1,19 +1,27 @@
+// welcome-data.service.ts
+
 import {Injectable} from '@angular/core';
-import {HttpClient} from "@angular/common/http";
+import {HttpClient} from '@angular/common/http';
+import {Observable} from 'rxjs';
+
+export interface HelloWorldBean {
+  message: string;
+}
 
 @Injectable({
   providedIn: 'root'
 })
 export class WelcomeDataService {
 
-  constructor(
-    private http: HttpClient,
-  ) {
+  constructor(private http: HttpClient) {
   }
 
-  executeHelloWorldBeanService() {
-    return this.http.get('http://localhost:8080/hello-world-bean')
+  // Викликає API для отримання об'єкта HelloWorldBean
+  executeHelloWorldBeanService(): Observable<HelloWorldBean> {
+    return this.http.get<HelloWorldBean>('http://localhost:8080/hello-world-bean');
+  }
 
-    // console.log('Execute Hello Bean Controller');
+  executeHelloWorldServiceWithPath(name: string): Observable<HelloWorldBean> {
+    return this.http.get<HelloWorldBean>(`http://localhost:8080/hello-world/path-variable/${name}`)
   }
 }

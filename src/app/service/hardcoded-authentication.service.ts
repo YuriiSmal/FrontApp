@@ -24,9 +24,9 @@ export class HardcodedAuthenticationService {
     if (typeof window !== 'undefined' && window.sessionStorage) {
       // Код для доступу до sessionStorage
       user = sessionStorage.getItem('authUser');
-      console.log(user);
+      //console.log(user);
     } else {
-      console.log('sessionStorage is not available');
+      //console.log('sessionStorage is not available');
     }
 
     return user !== null;
