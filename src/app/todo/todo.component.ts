@@ -2,6 +2,7 @@ import {Component, OnInit} from '@angular/core';
 import {TodoDataService} from "../service/data/todo-data.service";
 import {Todo} from "../list-todos/list-todos.component";
 import {ActivatedRoute, Router} from "@angular/router";
+import {BasicAuthenticationService} from "../service/basic-authentication.service";
 
 @Component({
   selector: 'app-todo',
@@ -16,33 +17,34 @@ export class TodoComponent implements OnInit {
   constructor(
     private todoService: TodoDataService,
     private route: ActivatedRoute,
-    private router: Router
+    private router: Router,
+    private basicAuth: BasicAuthenticationService
   ) {
   }
 
 
   ngOnInit(): void {
-    this.id = this.route.snapshot.params['id'];
-    this.toDo = new Todo(this.id, '', false, new Date());
+    this.id = Number(this.route.snapshot.params['id']);
+    this.toDo = new Todo(<number>this.id, '', false, new Date());
 
     if (this.id != -1)
-      this.todoService.retrieveTodo('yurii', <number>this.id)
+      this.todoService.retrieveTodo(<string>this.basicAuth.getAuthenticatedUser(), <number>this.id)
         .subscribe(
           data => this.toDo = data
         )
   }
 
   saveTodo() {
-
     if (this.id === -1) {
-      this.todoService.createTodo("yurii", this.toDo).subscribe(
+      this.todoService.createTodo(<string>this.basicAuth.getAuthenticatedUser(), <Todo>this.toDo).subscribe(
         response => {
           console.log(response)
           this.router.navigate(['todos']);
         }
       )
     } else {
-      this.todoService.updateTodo("yurii", this.id, this.toDo).subscribe(
+      this.todoService.updateTodo(<string>this.basicAuth.getAuthenticatedUser(),
+        <number>this.id, <Todo>this.toDo).subscribe(
         response => {
           console.log(response)
           this.router.navigate(['todos']);

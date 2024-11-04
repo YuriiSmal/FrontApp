@@ -3,6 +3,7 @@
 import {Injectable} from '@angular/core';
 import {HttpClient} from '@angular/common/http';
 import {Observable} from 'rxjs';
+import {API_URL} from "../../app.constants";
 
 export interface HelloWorldBean {
   message: string;
@@ -18,7 +19,7 @@ export class WelcomeDataService {
 
   // Викликає API для отримання об'єкта HelloWorldBean
   executeHelloWorldBeanService(): Observable<HelloWorldBean> {
-    return this.http.get<HelloWorldBean>('http://localhost:8080/hello-world-bean');
+    return this.http.get<HelloWorldBean>(`${API_URL}/hello-world-bean`);
   }
 
   executeHelloWorldServiceWithPath(name: string): Observable<HelloWorldBean> {
@@ -27,10 +28,10 @@ export class WelcomeDataService {
     // const headers = new HttpHeaders({
     //   Authorization: basic
     // })
-    // return this.http.get<HelloWorldBean>(`http://localhost:8080/hello-world/path-variable/${name}`,
+    // return this.http.get<HelloWorldBean>(`${API_URL}/hello-world/path-variable/${name}`,
     //   {headers})
 
-    return this.http.get<HelloWorldBean>(`http://localhost:8080/hello-world/path-variable/${name}`);
+    return this.http.get<HelloWorldBean>(`${API_URL}/hello-world/path-variable/${name}`);
   }
 
 
@@ -42,8 +43,8 @@ export class WelcomeDataService {
   // }
 
   /*
-  Access to XMLHttpRequest at 'http://localhost:8080/login'
-  (redirected from 'http://localhost:8080/hello-world/path-variable/yurii')
+  Access to XMLHttpRequest at '${API_URL}/login'
+  (redirected from '${API_URL}/hello-world/path-variable/yurii')
   from origin 'http://localhost:4200'
   has been blocked by CORS policy: No 'Access-Control-Allow-Origin' header is present on the requested resource.
   */
