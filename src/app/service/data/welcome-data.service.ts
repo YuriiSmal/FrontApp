@@ -22,6 +22,29 @@ export class WelcomeDataService {
   }
 
   executeHelloWorldServiceWithPath(name: string): Observable<HelloWorldBean> {
-    return this.http.get<HelloWorldBean>(`http://localhost:8080/hello-world/path-variable/${name}`)
+
+    // const basic = this.createBasicAuthHeader();
+    // const headers = new HttpHeaders({
+    //   Authorization: basic
+    // })
+    // return this.http.get<HelloWorldBean>(`http://localhost:8080/hello-world/path-variable/${name}`,
+    //   {headers})
+
+    return this.http.get<HelloWorldBean>(`http://localhost:8080/hello-world/path-variable/${name}`);
   }
+
+
+  // createBasicAuthHeader() {
+  //   const username = 'yurii'
+  //   const pass = 'standard'
+  //   const basicAuthString = 'Basic ' + window.btoa(`${username}:${pass}`)
+  //   return basicAuthString;
+  // }
+
+  /*
+  Access to XMLHttpRequest at 'http://localhost:8080/login'
+  (redirected from 'http://localhost:8080/hello-world/path-variable/yurii')
+  from origin 'http://localhost:4200'
+  has been blocked by CORS policy: No 'Access-Control-Allow-Origin' header is present on the requested resource.
+  */
 }

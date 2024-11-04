@@ -1,0 +1,7 @@
+.ng-invalid:not(form) {
+  border-left: 5px solid red;
+}
+
+.radio-option {
+  margin-right: 20px /* відстань між радіокнопками */
+}
