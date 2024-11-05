@@ -57,8 +57,10 @@ export class BasicAuthenticationService {
   }
 
   logout() {
-    sessionStorage.removeItem(AUTH_USER);
-    sessionStorage.removeItem(TOKEN);
+    if (this.isUserLoggedIn()) {
+      sessionStorage.removeItem(AUTH_USER);
+      sessionStorage.removeItem(TOKEN);
+    }
   }
 }
 
