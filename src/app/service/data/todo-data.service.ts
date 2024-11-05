@@ -32,7 +32,7 @@ export class TodoDataService {
 
   createTodo(username: string, todo: Todo) {
     return this.http.post<Todo>(
-      `${API_URL}/users/${username}/todos/`,
+      `${API_URL}/users/${username}/todos`,
       todo);
   }
 

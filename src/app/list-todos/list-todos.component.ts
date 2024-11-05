@@ -13,7 +13,6 @@ export class Todo {
   }
 }
 
-
 @Component({
   selector: 'app-list-todos',
   templateUrl: './list-todos.component.html',
@@ -24,11 +23,6 @@ export class ListTodosComponent implements OnInit {
   todos!: Todo[]
   message!: string
 
-  private userName!: string
-  // new Todo(1, 'Learn to Dance', false, new Date()),
-  // new Todo(2, 'Learn to Fight', false, new Date()),
-  // new Todo(3, 'Learn to Fly', false, new Date())
-
   constructor(
     private todoService: TodoDataService,
     private basicAuth: BasicAuthenticationService,
@@ -36,14 +30,11 @@ export class ListTodosComponent implements OnInit {
   }
 
   ngOnInit(): void {
-    //console.log('ngOnInit');
-    this.userName = <string>this.basicAuth.getAuthenticatedUser();
     this.refresh();
   }
 
   refresh() {
-
-    this.todoService.retrieveAllTodos(this.userName).subscribe(
+    this.todoService.retrieveAllTodos(<string>this.basicAuth.getAuthenticatedUser()).subscribe(
       response => {
         console.log(response)
         this.todos = response
@@ -53,14 +44,13 @@ export class ListTodosComponent implements OnInit {
 
   deleteTodo(id: number) {
     console.log(`delete todo ${id}`)
-    this.todoService.deleteTodo(this.userName, id).subscribe(
+    this.todoService.deleteTodo(<string>this.basicAuth.getAuthenticatedUser(), id).subscribe(
       response => {
         console.log(response)
         this.message = `Delete Successful of id ${id}`
         this.refresh();
       }
     )
-
   }
 
   updateTodo(id: number) {

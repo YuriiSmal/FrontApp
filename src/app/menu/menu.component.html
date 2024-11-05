@@ -5,7 +5,11 @@
       My GitHub</a></div>
 
     <ul class="navbar-nav">
-      <li><a *ngIf="basicAuth.isUserLoggedIn()" routerLink="/welcome/yurii" class="nav-link">Home</a></li>
+      <li><a *ngIf="basicAuth.isUserLoggedIn()"
+             [routerLink]="['/welcome', basicAuth.getAuthenticatedUser()]"
+             class="nav-link">Home</a>
+      </li>
+
       <li><a *ngIf="basicAuth.isUserLoggedIn()" routerLink="/todos" class="nav-link">ToDos</a></li>
     </ul>
 

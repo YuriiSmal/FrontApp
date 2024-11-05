@@ -1,32 +1,14 @@
-import {Injectable} from '@angular/core';
-import {HardcodedAuthenticationService} from "./hardcoded-authentication.service";
-import {
-  ActivatedRouteSnapshot,
-  CanActivate,
-  GuardResult,
-  MaybeAsync,
-  Router,
-  RouterStateSnapshot
-} from "@angular/router";
+import { inject } from '@angular/core';
+import { Router } from '@angular/router';
+import { BasicAuthenticationService } from './basic-authentication.service';
 
-@Injectable({
-  providedIn: 'root'
-})
-export class RouteGuardService implements CanActivate {
+export const authGuard = () => {
+  const router = inject(Router);
+  const basicAuth = inject(BasicAuthenticationService);
 
-  constructor(public hardcodedAuth: HardcodedAuthenticationService, public router: Router) {
+  const loggedIn = basicAuth.isUserLoggedIn();
+  if (!loggedIn) {
+    router.navigate(['/login']);
   }
-
-  canActivate(route: ActivatedRouteSnapshot, state: RouterStateSnapshot): MaybeAsync<GuardResult> {
-    route.params
-    state.url
-
-    const loggedIn = this.hardcodedAuth.isUserLoggedIn();
-    if (!loggedIn) {
-      this.router.navigate(['/login']);
-    }
-    return loggedIn;
-  }
-
-
-}
+  return loggedIn;
+};
