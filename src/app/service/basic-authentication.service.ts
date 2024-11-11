@@ -6,6 +6,9 @@ import {API_URL} from "../app.constants";
 export const AUTH_USER = 'authUser'
 export const TOKEN = 'token'
 
+export interface AuthData {
+  token: string
+}
 
 @Injectable({
   providedIn: 'root'
@@ -13,6 +16,23 @@ export const TOKEN = 'token'
 export class BasicAuthenticationService {
 
   constructor(private http: HttpClient) {
+  }
+
+  executeJWTAuthService(username: string, password: string): Observable<AuthData> {
+    return this.http.post<AuthData>(`${API_URL}/authenticate`,
+      {
+        username,
+        password
+      }
+    ).pipe(
+      map(
+        data => {
+          sessionStorage.setItem(AUTH_USER, username);
+          sessionStorage.setItem(TOKEN, `Bearer ${data.token}`);
+          return data;
+        }
+      )
+    )
   }
 
 
