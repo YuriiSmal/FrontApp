@@ -1,0 +1,30 @@
+<mat-sidenav-container class="sidenav-container">
+  <mat-sidenav #sidenav mode="side" opened>
+    <mat-toolbar color="primary">Navigation</mat-toolbar>
+    <mat-nav-list>
+      <a mat-list-item [routerLink]="['/presentation']" fragment="welcome" (click)="closeSidenav(sidenav)">Welcome</a>
+      <a mat-list-item [routerLink]="['/presentation']" fragment="about-me" (click)="closeSidenav(sidenav)">About Me</a>
+      <a mat-list-item [routerLink]="['/presentation']" fragment="program" (click)="closeSidenav(sidenav)">Program</a>
+      <a mat-list-item [routerLink]="['/presentation']" fragment="student-feedbacks" (click)="closeSidenav(sidenav)">Student Feedbacks</a>
+      <a mat-list-item [routerLink]="['/presentation']" fragment="contact" (click)="closeSidenav(sidenav)">Contact</a>
+    </mat-nav-list>
+  </mat-sidenav>
+
+  <mat-sidenav-content>
+    <mat-toolbar color="primary">
+      <button mat-icon-button (click)="sidenav.toggle()">
+        <mat-icon>menu</mat-icon>
+      </button>
+      Presentation Page
+    </mat-toolbar>
+
+    <!-- Section Components -->
+    <div class="sections">
+      <app-welcome-presentation id="welcome"></app-welcome-presentation>
+      <app-about-me id="about-me"></app-about-me>
+      <app-program id="program"></app-program>
+      <app-student-feedbacks id="student-feedbacks"></app-student-feedbacks>
+      <app-contact id="contact"></app-contact>
+    </div>
+  </mat-sidenav-content>
+</mat-sidenav-container>

@@ -14,6 +14,21 @@ import {LogoutComponent} from './logout/logout.component';
 import {HTTP_INTERCEPTORS, HttpClientModule, provideHttpClient, withFetch} from "@angular/common/http";
 import {TodoComponent} from './todo/todo.component';
 import {HttpInterceptorBasicAuthService} from "./service/http/http-interceptor-basic-auth.service";
+import { PresentationComponent } from './presentation/presentation.component';
+import { provideAnimationsAsync } from '@angular/platform-browser/animations/async';
+import { AboutMeComponent } from './presentation/about-me/about-me.component';
+import { ProgramComponent } from './presentation/program/program.component';
+import { StudentFeedbacksComponent } from './presentation/student-feedbacks/student-feedbacks.component';
+import { ContactComponent } from './presentation/contact/contact.component';
+
+// Angular Material modules
+import { MatSidenavModule } from '@angular/material/sidenav';
+import { MatToolbarModule } from '@angular/material/toolbar';
+import { MatListModule } from '@angular/material/list';
+import { MatButtonModule } from '@angular/material/button';
+import { MatIconModule } from '@angular/material/icon';
+import {BrowserAnimationsModule} from "@angular/platform-browser/animations";
+import {WelcomePresentationComponent} from "./presentation/welcome/welcome-presentation.component";
 
 @NgModule({
   declarations: [
@@ -25,20 +40,33 @@ import {HttpInterceptorBasicAuthService} from "./service/http/http-interceptor-b
     MenuComponent,
     FooterComponent,
     LogoutComponent,
-    TodoComponent
+    TodoComponent,
+    PresentationComponent,
+    AboutMeComponent,
+    ProgramComponent,
+    StudentFeedbacksComponent,
+    WelcomePresentationComponent,
+    ContactComponent
   ],
   imports: [
     BrowserModule,
     AppRoutingModule,
     FormsModule,
-    HttpClientModule
+    HttpClientModule,
+    BrowserAnimationsModule, // Required for Angular Material
+    MatSidenavModule,
+    MatToolbarModule,
+    MatListModule,
+    MatButtonModule,
+    MatIconModule
   ],
   providers: [
     {
       provide: HTTP_INTERCEPTORS, useClass: HttpInterceptorBasicAuthService, multi: true
     },
     provideClientHydration(),
-    provideHttpClient(withFetch())
+    provideHttpClient(withFetch()),
+    provideAnimationsAsync()
   ],
   bootstrap: [AppComponent]
 })

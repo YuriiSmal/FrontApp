@@ -1,7 +1,14 @@
-<footer class="footer">
+<!--<footer class="footer">-->
 
-  <div class="container">
-    <span class="text-white-50">All rights reserved by Kit =)</span>
+<!--  <div class="container">-->
+<!--    <span class="text-white-50">All rights reserved by Kit =)</span>-->
 
-  </div>
-</footer>
+<!--  </div>-->
+<!--</footer>-->
+
+
+<div
+  class="footer"
+  [ngClass]="{'footer-relative': isRelativeFooter, 'footer-fixed': !isRelativeFooter}">
+  © All rights reserved by Kit =)
+</div>
