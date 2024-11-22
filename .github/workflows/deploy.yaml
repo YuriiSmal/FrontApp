@@ -28,17 +28,17 @@ jobs:
       # Крок 4: Побудова Angular проекту
       - name: Build the project
         run: |
-          npm run build -- --configuration production --base-href "/<your-repository-name>/"
+          npm run build -- --configuration production --base-href "/FrontApp/"
 
       # Крок 5: Додавання .nojekyll файлу
       - name: Add .nojekyll file
         run: |
-          touch dist/<your-repository-name>/.nojekyll
+          touch dist/FrontApp/.nojekyll
 
       # Крок 6: Публікація на GitHub Pages
       - name: Deploy to GitHub Pages
         uses: JamesIves/github-pages-deploy-action@v4
         with:
           branch: gh-pages  # Гілка для публікації на GitHub Pages
-          folder: dist/<your-repository-name>  # Шлях до зібраної папки
+          folder: dist/FrontApp  # Шлях до зібраної папки
           token: ${{ secrets.GITHUB_TOKEN }}  # Токен для доступу до GitHub API
