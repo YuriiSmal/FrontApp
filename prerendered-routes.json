@@ -1,0 +1,12 @@
+{
+  "routes": [
+    "/login",
+    "/logout",
+    "/presentation",
+    "/presentation/about",
+    "/presentation/contact",
+    "/presentation/course",
+    "/presentation/price",
+    "/todos"
+  ]
+}
