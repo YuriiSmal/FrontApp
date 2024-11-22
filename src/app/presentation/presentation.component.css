@@ -1,3 +1,4 @@
+/* Фіксоване посилання */
 #linkToMainSite {
     position: fixed; /* Зафіксує елемент відносно екрану */
     top: 10px; /* Відступ зверху */
@@ -20,8 +21,7 @@
     background-color: royalblue; /* Зміна кольору при наведенні */
 }
 
-
-/* app.component.css */
+/* Загальний контейнер */
 .container {
     display: flex;
 }
@@ -34,6 +34,13 @@
     height: 100%;
     background-color: #333;
     padding-top: 50px;
+    transform: translateX(0); /* Відкрито за замовчуванням */
+    transition: transform 0.3s ease-in-out;
+}
+
+/* Прихований стан для мобільних */
+.sidebar.hidden {
+    transform: translateX(-100%);
 }
 
 .nav-link {
@@ -69,12 +76,13 @@
     }
 }
 
-
 .content {
     margin-left: 220px;
     padding: 20px;
+    transition: margin-left 0.3s ease-in-out;
 }
 
+/* Секції контенту */
 .section {
     padding: 20px;
     margin-bottom: 50px;
@@ -87,3 +95,54 @@
     margin-top: 0;
 }
 
+/* Адаптація для мобільних */
+@media (max-width: 768px) {
+    .hamburger {
+        display: none;
+    }
+
+    .sidebar {
+        transform: translateX(0); /* Завжди відкрита */
+    }
+
+    .content {
+        margin-left: 0; /* На мобільних немає фіксованого sidebar */
+    }
+
+    #linkToMainSite {
+        display: none;
+    }
+}
+
+@media (max-width: 768px) {
+    .content {
+        margin-left: 0; /* На мобільних sidebar ховається */
+    }
+
+    .sidebar.hidden + .content {
+        margin-left: 0;
+    }
+}
+
+/* Стиль кнопки-бургера */
+.hamburger {
+    position: fixed;
+    top: 10px;
+    left: 10px;
+    width: 40px;
+    height: 40px;
+    background-color: #333;
+    color: white;
+    border: none;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+    z-index: 1001;
+    transition: background-color 0.3s ease;
+}
+
+.hamburger:hover {
+    background-color: #444;
+}

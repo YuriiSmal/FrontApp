@@ -1,17 +1,31 @@
+<button class="hamburger" (click)="toggleSidebar()">
+    ☰
+</button>
 <div>
     <a id="linkToMainSite" href="/login">Login</a>
 </div>
-
 <div class="container">
     <!-- Ліва навігація -->
-    <div class="sidebar">
-        <a href="#about" class="nav-link" (click)="scrollToSection('about', $event)" [class.active]="activeSection === 'about'">About</a>
-        <a href="#course" class="nav-link" (click)="scrollToSection('course', $event)" [class.active]="activeSection === 'course'">Course</a>
-        <a href="#price" class="nav-link" (click)="scrollToSection('price', $event)" [class.active]="activeSection === 'price'">Price</a>
-        <a href="#contact" class="nav-link" (click)="scrollToSection('contact', $event)" [class.active]="activeSection === 'contact'">Contact</a>
+    <div class="sidebar" [class.hidden]="isSidebarHidden">
+        <a href="#about" class="nav-link" (click)="scrollToSection('about', $event)"
+           [class.active]="activeSection === 'about'">
+            About
+        </a>
+        <a href="#course" class="nav-link" (click)="scrollToSection('course', $event)"
+           [class.active]="activeSection === 'course'">
+            Course
+        </a>
+        <a href="#price" class="nav-link" (click)="scrollToSection('price', $event)"
+           [class.active]="activeSection === 'price'">
+            Price
+        </a>
+        <a href="#contact" class="nav-link" (click)="scrollToSection('contact', $event)"
+           [class.active]="activeSection === 'contact'">
+            Contact
+        </a>
     </div>
 
-    <!-- Вміст сторінки -->
+    <!-- Контент -->
     <div class="content">
         <div id="about" class="section">
             <h2>About</h2>
@@ -38,3 +52,7 @@
         </div>
     </div>
 </div>
+
+
+
+
