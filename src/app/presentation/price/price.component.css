@@ -1,0 +1,52 @@
+.carousel-container {
+  position: relative;
+  width: 100%;
+  overflow: hidden;
+  height: 400px;  /* Збільшено для тесту */
+}
+
+.carousel {
+  display: flex;
+  transition: transform 0.5s ease;
+}
+
+.carousel-item {
+  min-width: 100%;
+  box-sizing: border-box;
+  text-align: center;
+}
+
+.carousel-item img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;  /* Додаємо для коректного відображення зображення */
+}
+
+.carousel-nav {
+  position: absolute;
+  top: 50%;
+  width: 100%;
+  display: flex;
+  justify-content: space-between;
+  transform: translateY(-50%);
+}
+
+.carousel-nav button {
+  background: rgba(0, 0, 0, 0.5);
+  color: white;
+  border: none;
+  padding: 10px;
+  cursor: pointer;
+  font-size: 1.5em;
+}
+
+.carousel-nav button:hover {
+  background: rgba(0, 0, 0, 0.7);
+}
+
+.price-final {
+  font-size: 1.2em;
+  font-weight: bold;
+  margin-top: 10px;
+  color: #4CAF50; /* Зелений колір для ціни */
+}
