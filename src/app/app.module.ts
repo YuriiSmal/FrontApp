@@ -14,6 +14,17 @@ import {LogoutComponent} from './logout/logout.component';
 import {HTTP_INTERCEPTORS, HttpClientModule, provideHttpClient, withFetch} from "@angular/common/http";
 import {TodoComponent} from './todo/todo.component';
 import {HttpInterceptorBasicAuthService} from "./service/http/http-interceptor-basic-auth.service";
+import {provideAnimationsAsync} from "@angular/platform-browser/animations/async";
+import {PresentationComponent} from "./presentation/presentation.component";
+import {AboutComponent} from "./presentation/about/about.component";
+import {CourseComponent} from "./presentation/course/course.component";
+import {PriceComponent} from "./presentation/price/price.component";
+import {ContactComponent} from "./presentation/contact/contact.component";
+import {MatButtonModule} from '@angular/material/button';
+import {MatToolbarModule} from '@angular/material/toolbar';
+import {MatCardModule} from '@angular/material/card';
+import {MatIconModule} from '@angular/material/icon';
+import {MatSlideToggle} from "@angular/material/slide-toggle";
 
 @NgModule({
   declarations: [
@@ -25,20 +36,31 @@ import {HttpInterceptorBasicAuthService} from "./service/http/http-interceptor-b
     MenuComponent,
     FooterComponent,
     LogoutComponent,
-    TodoComponent
+    TodoComponent,
+    PresentationComponent,
+    AboutComponent,
+    CourseComponent,
+    PriceComponent,
+    ContactComponent
   ],
   imports: [
     BrowserModule,
     AppRoutingModule,
     FormsModule,
-    HttpClientModule
+    HttpClientModule,
+    MatButtonModule,
+    MatToolbarModule,
+    MatCardModule,
+    MatIconModule,
+    MatSlideToggle
   ],
   providers: [
     {
       provide: HTTP_INTERCEPTORS, useClass: HttpInterceptorBasicAuthService, multi: true
     },
     provideClientHydration(),
-    provideHttpClient(withFetch())
+    provideHttpClient(withFetch()),
+    provideAnimationsAsync()
   ],
   bootstrap: [AppComponent]
 })
