@@ -25,20 +25,26 @@ jobs:
         run: |
           npm install
 
-      # Step 4: Build the Angular project
+      # Step 4: Build the project
       - name: Build the project
         run: |
-          npm run build -- --configuration production --base-href "/FLASH-APP/"
+          npm run build -- --configuration production --base-href "/FrontApp/"
+          ls -la dist/flash-app  # Debugging: List files in the output directory
 
-      # Step 5: Create the .nojekyll file
+      # Step 5: Create .nojekyll file (if the build directory exists)
       - name: Create .nojekyll file
         run: |
-          touch dist/FLASH-APP/.nojekyll  # Ensure the build folder exists before touching
+          if [ -d "dist/flash-app" ]; then
+            touch dist/flash-app/.nojekyll  # Ensure the build folder exists before touching
+          else
+            echo "Build directory does not exist!"
+            exit 1
+          fi
 
       # Step 6: Deploy to GitHub Pages
       - name: Deploy to GitHub Pages
         uses: JamesIves/github-pages-deploy-action@v4
         with:
           branch: gh-pages  # The branch to publish to GitHub Pages
-          folder: dist/FLASH-APP  # Folder with the build output
+          folder: dist/flash-app  # Folder with the build output
           token: ${{ secrets.GITHUB_TOKEN }}  # Use GitHub token for authentication
