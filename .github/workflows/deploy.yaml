@@ -1,0 +1,44 @@
+name: Deploy to GitHub Pages
+
+on:
+  push:
+    branches:
+      - pani_irina  # Запускається на кожен пуш в основну гілку
+
+jobs:
+  deploy:
+    runs-on: ubuntu-latest
+
+    steps:
+      # Крок 1: Checkout коду
+      - name: Checkout repository
+        uses: actions/checkout@v3
+
+      # Крок 2: Налаштування Node.js
+      - name: Set up Node.js
+        uses: actions/setup-node@v3
+        with:
+          node-version: '16'  # Вказати потрібну версію Node.js
+
+      # Крок 3: Встановлення залежностей
+      - name: Install dependencies
+        run: |
+          npm install
+
+      # Крок 4: Побудова Angular проекту
+      - name: Build the project
+        run: |
+          npm run build -- --configuration production --base-href "/<your-repository-name>/"
+
+      # Крок 5: Додавання .nojekyll файлу
+      - name: Add .nojekyll file
+        run: |
+          touch dist/<your-repository-name>/.nojekyll
+
+      # Крок 6: Публікація на GitHub Pages
+      - name: Deploy to GitHub Pages
+        uses: JamesIves/github-pages-deploy-action@v4
+        with:
+          branch: gh-pages  # Гілка для публікації на GitHub Pages
+          folder: dist/<your-repository-name>  # Шлях до зібраної папки
+          token: ${{ secrets.GITHUB_TOKEN }}  # Токен для доступу до GitHub API
