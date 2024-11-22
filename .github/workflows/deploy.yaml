@@ -28,18 +28,7 @@ jobs:
       # Step 4: Build the project
       - name: Build the project
         run: |
-          npm run build -- --configuration production --base-href "/flash-app/"
-          ls -la dist/flash-app  # Debugging: List files in the output directory
-
-      # Step 5: Create .nojekyll file (if the build directory exists)
-      - name: Create .nojekyll file
-        run: |
-          if [ -d "dist/flash-app" ]; then
-            touch dist/flash-app/.nojekyll  # Ensure the build folder exists before touching
-          else
-            echo "Build directory does not exist!"
-            exit 1
-          fi
+          npm run build
 
       # Step 6: Deploy to GitHub Pages
       - name: Deploy to GitHub Pages
