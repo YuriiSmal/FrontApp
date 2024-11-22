@@ -31,9 +31,9 @@ jobs:
           npm run build
 
       # Step 6: Deploy to GitHub Pages
-      - name: Deploy to gh pages
-        run: |
-          npx angular-cli-ghpages --dir=dist/flash-app
-        env:
-          CI: true
-          GH_TOKEN: ${{ secrets.GH_TOKEN }}
+      - name: Deploy to GitHub Pages
+        uses: JamesIves/github-pages-deploy-action@v4
+        with:
+          branch: pani_irina  # The branch to publish to GitHub Pages
+          folder: dist/flash-app  # Folder with the build output
+          token: ${{ secrets.GITHUB_TOKEN }}  # Use GitHub token for authentication
