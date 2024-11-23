@@ -3,7 +3,7 @@ name: Deploy Application
 on:
   push:
     branches:
-      - pani-irina  # Trigger on push to the main branch
+      - pani_irina  # Trigger on push to the main branch
 
 jobs:
   deploy:
