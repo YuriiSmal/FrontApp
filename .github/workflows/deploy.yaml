@@ -28,7 +28,7 @@ jobs:
       # Step 4: Build the project
       - name: Build the project
         run: |
-          npm run build -- --configuration production --base-href "/flash-app/"
+          npm run build -- --configuration production --base-href "/FrontApp/"
           ls -la dist/FrontApp  # Debugging: List files in the output directory
 
       # Step 5: Create .nojekyll file
