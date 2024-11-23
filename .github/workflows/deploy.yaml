@@ -3,7 +3,7 @@ name: Deploy to GitHub Pages
 on:
   push:
     branches:
-      - pani  # Trigger on push to the main branch
+      - pani  # Trigger on push to the 'pani' branch
 
 jobs:
   deploy:
@@ -18,12 +18,11 @@ jobs:
       - name: Set up Node.js
         uses: actions/setup-node@v3
         with:
-          node-version: '22'  # Set the Node.js version
+          node-version: '22'
 
       # Step 3: Install dependencies
       - name: Install dependencies
-        run: |
-          npm install
+        run: npm install
 
       # Step 4: Build the project
       - name: Build the project
@@ -35,17 +34,16 @@ jobs:
       - name: Create .nojekyll file
         run: |
           if [ -d "dist/flash-app" ]; then
-            touch dist/flash-app/.nojekyll  # Ensure the build folder exists before touching
+            touch dist/flash-app/.nojekyll
           else
             echo "Build directory does not exist!"
             exit 1
           fi
 
-
       # Step 6: Deploy to GitHub Pages
       - name: Deploy to GitHub Pages
         uses: JamesIves/github-pages-deploy-action@v4
         with:
-          branch: gh-pages  # The branch to publish to GitHub Pages
-          folder: dist/flash-app  # Folder with the build output
-          token: ${{ secrets.GITHUB_TOKEN }}  # Use GitHub token for authentication
+          branch: gh-pages
+          folder: dist/flash-app
+          token: ${{ secrets.GITHUB_TOKEN }}
