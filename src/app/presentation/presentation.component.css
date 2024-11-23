@@ -28,7 +28,7 @@
 
 .sidebar {
     width: 200px;
-    position: fixed;
+    position: relative;
     top: 0;
     left: 0;
     height: 100%;
@@ -102,6 +102,7 @@
     }
 
     .sidebar {
+        position: absolute;
         transform: translateX(0); /* Завжди відкрита */
     }
 
@@ -121,6 +122,29 @@
 
     .sidebar.hidden + .content {
         margin-left: 0;
+    }
+}
+
+@media (max-width: 768px) {
+    body {
+        overflow: hidden; /* Забороняє прокручування */
+        position: fixed; /* Фіксує body */
+        width: 100%; /* Забезпечує, що body займає всю ширину екрану */
+        height: 100%; /* Забезпечує, що body займає всю висоту екрану */
+        top: 0;
+        left: 0;
+    }
+
+    /* Для забезпечення роботи з фіксованим body можна додати підконтейнер для контенту */
+    .container {
+        height: 100vh; /* Висота контейнера на екрані */
+        overflow: auto; /* Дозволяє прокручування тільки в середині контейнера */
+    }
+
+    /* Якщо потрібно, додавайте додаткові стилі для внутрішніх елементів */
+    .content {
+        overflow-y: auto; /* Включає прокручування контенту */
+        height: 100%; /* Залишити висоту в межах екрану */
     }
 }
 
