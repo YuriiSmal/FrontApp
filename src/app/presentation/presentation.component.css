@@ -1,29 +1,23 @@
-/* Фіксоване посилання */
-#linkToMainSite {
-    position: fixed; /* Зафіксує елемент відносно екрану */
-    top: 10px; /* Відступ зверху */
-    right: 10px; /* Відступ справа */
-    width: 50px; /* Розмір кола */
-    height: 50px; /* Розмір кола */
-    background-color: darkblue; /* Колір фону */
-    color: white; /* Колір тексту */
-    border-radius: 50%; /* Робить елемент круглим */
-    display: flex; /* Для центрування тексту */
-    align-items: center; /* Вертикальне центрування */
-    justify-content: center; /* Горизонтальне центрування */
-    text-decoration: none; /* Прибрати підкреслення тексту */
-    font-size: 14px; /* Розмір шрифту */
-    box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.1); /* Додає тінь */
-    z-index: 1000; /* Робить елемент поверх інших */
+body {
+    margin: 0;
+    padding: 0;
+    font-family: Arial, sans-serif;
+    scroll-snap-type: y mandatory; /* Плавне прокручування між секціями */
+    overflow-x: hidden; /* Прибирає горизонтальну прокрутку */
 }
 
-#linkToMainSite:hover {
-    background-color: royalblue; /* Зміна кольору при наведенні */
+:root {
+    --vh: 1vh; /* Динамічна змінна для висоти екрану */
+}
+
+body {
+    height: calc(var(--vh, 1vh) * 100);
 }
 
 /* Загальний контейнер */
 .container {
     display: flex;
+    position: relative;
 }
 
 .sidebar {
@@ -34,8 +28,9 @@
     height: 100%;
     background-color: #333;
     padding-top: 50px;
-    transform: translateX(0); /* Відкрито за замовчуванням */
+    transform: translateX(-100%); /* Sidebar ховається за замовчуванням */
     transition: transform 0.3s ease-in-out;
+    z-index: 1000;
 }
 
 /* Прихований стан для мобільних */
@@ -78,73 +73,56 @@
 
 .content {
     margin-left: 220px;
-    padding: 20px;
+    padding: 0;
     transition: margin-left 0.3s ease-in-out;
+    width: 100%;
+    position: relative;
+    z-index: 0; /* Контент залишається під sidebar */
 }
 
 /* Секції контенту */
 .section {
+    display: flex;
+    flex-direction: column;
+    justify-content: stretch;
+    align-items: stretch;
+    height: 100vh; /* Займає всю висоту екрану */
     padding: 20px;
-    margin-bottom: 50px;
+    box-sizing: border-box;
+    position: relative;
+    scroll-snap-align: start;
+    scroll-snap-stop: always;
     background-color: #f9f9f9;
-    border: 1px solid #ccc;
-    min-height: 100vh; /* Забезпечує, що кожен розділ має достатньо висоти */
+    z-index: 0;
 }
 
-.section h2 {
-    margin-top: 0;
+.section-content {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
 }
 
-/* Адаптація для мобільних */
-@media (max-width: 768px) {
-    .hamburger {
-        display: none;
-    }
-
-    .sidebar {
-        transform: translateX(0); /* Завжди відкрита */
-    }
-
-    .content {
-        margin-left: 0; /* На мобільних немає фіксованого sidebar */
-    }
-
-    #linkToMainSite {
-        display: none;
-    }
+/* Градієнти для секцій */
+.section:nth-child(odd) {
+    background: linear-gradient(180deg, #f9f9f9, #e0e0e0);
 }
 
-@media (max-width: 768px) {
-    .content {
-        margin-left: 0; /* На мобільних sidebar ховається */
-    }
-
-    .sidebar.hidden + .content {
-        margin-left: 0;
-    }
+.section:nth-child(even) {
+    background: linear-gradient(180deg, #e0e0e0, #d1d1d1);
 }
 
-@media (max-width: 768px) {
-    body {
-        overflow: hidden; /* Забороняє прокручування */
-        position: fixed; /* Фіксує body */
-        width: 100%; /* Забезпечує, що body займає всю ширину екрану */
-        height: 100%; /* Забезпечує, що body займає всю висоту екрану */
-        top: 0;
-        left: 0;
-    }
+.section-content h2 {
+    margin: 0;
+    font-size: 36px;
+    color: #333;
+}
 
-    /* Для забезпечення роботи з фіксованим body можна додати підконтейнер для контенту */
-    .container {
-        height: 100vh; /* Висота контейнера на екрані */
-        overflow: auto; /* Дозволяє прокручування тільки в середині контейнера */
-    }
-
-    /* Якщо потрібно, додавайте додаткові стилі для внутрішніх елементів */
-    .content {
-        overflow-y: auto; /* Включає прокручування контенту */
-        height: 100%; /* Залишити висоту в межах екрану */
-    }
+.section-content p {
+    font-size: 18px;
+    color: #555;
 }
 
 /* Стиль кнопки-бургера */
@@ -168,4 +146,54 @@
 
 .hamburger:hover {
     background-color: #444;
+}
+
+#linkToMainSite {
+    position: fixed;
+    top: 10px;
+    right: 10px;
+    width: 50px;
+    height: 50px;
+    background-color: darkblue;
+    color: white;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    text-decoration: none;
+    font-size: 14px;
+    box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.1);
+    z-index: 1000;
+}
+
+#linkToMainSite:hover {
+    background-color: royalblue;
+}
+
+@media (max-width: 768px) {
+    .hamburger {
+        display: block;
+    }
+
+    .sidebar {
+        transform: translateX(0); /* Завжди відкрита */
+    }
+
+    .content {
+        margin-left: 0; /* На мобільних немає фіксованого sidebar */
+    }
+
+    #linkToMainSite {
+        display: none;
+    }
+}
+
+@media (max-width: 768px) {
+    .content {
+        margin-left: 0; /* На мобільних sidebar ховається */
+    }
+
+    .sidebar.hidden + .content {
+        margin-left: 0;
+    }
 }

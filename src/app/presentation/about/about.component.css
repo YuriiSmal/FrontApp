@@ -5,6 +5,7 @@
   align-items: center;
   padding: 50px 20px;
   background-color: #f9f9f9;
+  position: relative;
 }
 
 .about-container {
@@ -15,10 +16,11 @@
 
 /* Зображення */
 .about-image img {
-  width: 100%;
-  height: auto;
+  width: 100%; /* Розтягує зображення на всю ширину контейнера */
+  height: auto; /* Зберігає пропорції зображення */
   border-radius: 10px;
   box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+  object-fit: cover; /* Заповнює контейнер, не спотворюючи зображення */
 }
 
 /* Текст поверх зображення */
@@ -44,4 +46,28 @@
 .about-text p {
   font-size: 20px;
   margin: 0;
+}
+
+/* Адаптація для мобільних екранів */
+@media (max-width: 768px) {
+  .about {
+    padding: 30px 15px; /* Зменшення відступів на мобільних */
+  }
+
+  .about-image img {
+    object-fit: contain; /* Зображення не обрізається, зберігає пропорції */
+  }
+
+  .about-text {
+    font-size: 16px; /* Зменшуємо розмір тексту */
+    padding: 15px; /* Зменшуємо відступи */
+  }
+
+  .about-text h1 {
+    font-size: 24px; /* Зменшуємо розмір заголовку */
+  }
+
+  .about-text p {
+    font-size: 14px; /* Зменшуємо розмір параграфу */
+  }
 }

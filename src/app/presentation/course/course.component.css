@@ -1,77 +1,73 @@
-/* Загальний стиль секції курсів */
+/* Стиль для секції з курсами */
 .courses {
-  padding: 50px 20px;
-  background-color: #f4f4f4;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 20px;
+  background-color: #f5f5f5; /* Фон секції */
 }
 
 .courses-container {
   display: flex;
-  justify-content: center;
-  flex-wrap: wrap;
-  gap: 20px;
+  flex-wrap: wrap; /* Забезпечує адаптивність для мобільних */
+  gap: 20px; /* Проміжок між елементами */
 }
 
 .course-item {
-  position: relative;
+  display: flex;
+  flex-direction: column; /* Вертикальне вирівнювання */
+  justify-content: center;
+  align-items: center;
+  text-align: center;
+  max-width: 400px;
   width: 100%;
-  max-width: 900px;
-  overflow: hidden;
-  border-radius: 15px;
-  box-shadow: 0 8px 15px rgba(0, 0, 0, 0.1);
 }
 
 .course-item img {
-  width: 100%;
-  height: auto;
-  object-fit: cover;
-  border-radius: 15px;
-  filter: grayscale(40%); /* додати ефект чорнобілого зображення */
-  transition: filter 0.3s ease-in-out;
+  width: 100%; /* Розтягує зображення на всю ширину батьківського контейнера */
+  height: auto; /* Зберігає пропорції */
+  object-fit: cover; /* Забезпечує, щоб зображення заповнювало контейнер без спотворення */
+  border-radius: 8px; /* Округлення кутів */
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); /* Тінь для стилізації */
 }
 
-.course-item img:hover {
-  filter: grayscale(0); /* кольорове зображення при наведенні */
-}
-
-/* Текст поверх зображення */
 .course-text {
-  position: absolute;
-  top: 50%;
-  left: 50%;
-  transform: translate(-50%, -50%);
-  color: #fff;
-  text-align: center;
-  background: rgba(0, 0, 0, 0.6); /* півпрозорий фон */
-  padding: 20px;
-  border-radius: 10px;
-  width: 90%;
-  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.2);
+  margin-top: 20px;
 }
 
 .course-text h2 {
-  font-size: 36px;
-  font-weight: 600;
-  margin-bottom: 15px;
-  letter-spacing: 2px;
+  font-size: 24px;
+  color: #333;
 }
 
 .course-text p {
-  font-size: 18px;
-  margin-bottom: 20px;
-  line-height: 1.5;
+  font-size: 16px;
+  color: #555;
+  margin: 10px 0;
 }
 
 .cta-button {
   padding: 10px 20px;
-  font-size: 18px;
-  background-color: #1e77b5;
+  font-size: 16px;
   color: white;
+  background-color: #007bff;
   border: none;
-  border-radius: 5px;
+  border-radius: 4px;
   cursor: pointer;
-  transition: background-color 0.3s ease;
+  transition: background-color 0.3s;
 }
 
 .cta-button:hover {
-  background-color: #155a8a; /* темніший відтінок при наведенні */
+  background-color: #0056b3;
+}
+
+/* Адаптація для мобільних екранів */
+@media (max-width: 768px) {
+  .courses-container {
+    flex-direction: column; /* Вертикальне вирівнювання для мобільних */
+  }
+
+  .course-item img {
+    object-fit: contain; /* Адаптує зображення для мобільних без обрізання */
+  }
 }

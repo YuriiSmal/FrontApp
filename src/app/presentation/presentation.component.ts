@@ -73,5 +73,9 @@ export class PresentationComponent implements OnInit, OnDestroy {
     onResize() {
         // Відкривати sidebar за замовчуванням на великих екранах
         this.isSidebarHidden = window.innerWidth < 768 ? this.isSidebarHidden : false;
+
+        window.addEventListener('resize', () => {
+            document.documentElement.style.setProperty('--vh', `${window.innerHeight / 100}px`);
+        });
     }
 }

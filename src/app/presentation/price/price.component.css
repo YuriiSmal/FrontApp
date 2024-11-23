@@ -1,8 +1,9 @@
+/* Контейнер каруселі */
 .carousel-container {
   position: relative;
   width: 100%;
   overflow: hidden;
-  height: 400px;  /* Збільшено для тесту */
+  height: 400px; /* Залишено для тесту, можна адаптувати для мобільних пристроїв */
 }
 
 .carousel {
@@ -16,12 +17,14 @@
   text-align: center;
 }
 
+/* Зображення в каруселі */
 .carousel-item img {
   width: 100%;
   height: 100%;
-  object-fit: cover;  /* Додаємо для коректного відображення зображення */
+  object-fit: cover; /* Зображення адаптується до контейнера */
 }
 
+/* Навігація каруселі */
 .carousel-nav {
   position: absolute;
   top: 50%;
@@ -44,9 +47,26 @@
   background: rgba(0, 0, 0, 0.7);
 }
 
+/* Ціна */
 .price-final {
   font-size: 1.2em;
   font-weight: bold;
   margin-top: 10px;
   color: #4CAF50; /* Зелений колір для ціни */
+}
+
+/* Адаптація для мобільних екранів */
+@media (max-width: 768px) {
+  .carousel-container {
+    height: 250px; /* Зменшена висота для мобільних пристроїв */
+  }
+
+  .carousel-nav button {
+    font-size: 1.2em; /* Зменшення розміру кнопок */
+    padding: 8px; /* Зменшення відступів для кнопок */
+  }
+
+  .price-final {
+    font-size: 1em; /* Зменшення розміру ціни для мобільних пристроїв */
+  }
 }
