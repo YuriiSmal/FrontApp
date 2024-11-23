@@ -1,49 +1,40 @@
-name: Deploy to GitHub Pages
+name: Deploy Angular SSR (Browser Only) to GitHub Pages
 
 on:
   push:
     branches:
-      - pani  # Trigger on push to the 'pani' branch
+      - pani  # Гілка, на якій тригериться деплой
 
 jobs:
   deploy:
     runs-on: ubuntu-latest
 
     steps:
-      # Step 1: Checkout the code
+      # Крок 1: Клонування репозиторію
       - name: Checkout repository
         uses: actions/checkout@v3
 
-      # Step 2: Set up Node.js
+      # Крок 2: Встановлення Node.js
       - name: Set up Node.js
         uses: actions/setup-node@v3
         with:
-          node-version: '22'
+          node-version: '16'
 
-      # Step 3: Install dependencies
+      # Крок 3: Встановлення залежностей
       - name: Install dependencies
         run: npm install
 
-      # Step 4: Build the project
-      - name: Build the project
-        run: |
-          npm run build -- --configuration production --base-href "/FrontApp/"
-          ls -la dist/flash-app  # Debugging: List files in the output directory
+      # Крок 4: Білд лише для клієнта
+      - name: Build for production
+        run: npm run build:browser  # У Angular Universal використовуйте цей скрипт
 
-      # Step 5: Create .nojekyll file
+      # Крок 5: Додавання .nojekyll
       - name: Create .nojekyll file
-        run: |
-          if [ -d "dist/flash-app" ]; then
-            touch dist/flash-app/.nojekyll
-          else
-            echo "Build directory does not exist!"
-            exit 1
-          fi
+        run: touch dist/browser/.nojekyll
 
-      # Step 6: Deploy to GitHub Pages
+      # Крок 6: Деплой на GitHub Pages
       - name: Deploy to GitHub Pages
         uses: JamesIves/github-pages-deploy-action@v4
         with:
           branch: gh-pages
-          folder: dist/flash-app
-          token: ${{ secrets.GITHUB_TOKEN }}
+          folder: dist/browser  # Вказуємо папку з клієнтським білдом
