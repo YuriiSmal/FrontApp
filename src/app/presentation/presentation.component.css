@@ -28,7 +28,7 @@
 
 .sidebar {
     width: 200px;
-    position: relative;
+    position: fixed;
     top: 0;
     left: 0;
     height: 100%;
@@ -102,7 +102,6 @@
     }
 
     .sidebar {
-        position: absolute;
         transform: translateX(0); /* Завжди відкрита */
     }
 
