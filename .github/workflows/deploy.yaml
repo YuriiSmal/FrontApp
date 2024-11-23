@@ -3,7 +3,7 @@ name: Deploy to GitHub Pages
 on:
   push:
     branches:
-      - pani_irina  # Trigger on push to the main branch
+      - pani  # Trigger on push to the main branch
 
 jobs:
   deploy:
@@ -34,6 +34,6 @@ jobs:
       - name: Deploy to GitHub Pages
         uses: JamesIves/github-pages-deploy-action@v4
         with:
-          branch: pani_irina  # The branch to publish to GitHub Pages
+          branch: gh-pages  # The branch to publish to GitHub Pages
           folder: dist/flash-app  # Folder with the build output
           token: ${{ secrets.GITHUB_TOKEN }}  # Use GitHub token for authentication
