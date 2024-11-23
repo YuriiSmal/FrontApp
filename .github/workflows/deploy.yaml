@@ -28,7 +28,7 @@ jobs:
       # Step 4: Build the project
       - name: Build the project
         run: |
-          ng build --configuration production --base-href https://YuriiSmal.github.io/FrontApp
+          ng build --configuration production --base-href https://YuriiSmal.github.io/FrontApp/
 
       # Step 6: Deploy to GitHub Pages
       - name: Deploy to GitHub Pages
