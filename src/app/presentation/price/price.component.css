@@ -10,6 +10,12 @@
   transition: transform 0.5s ease-in-out;
 }
 
+h2 {
+  position: relative;
+  text-align: center;
+
+}
+
 .card {
   flex: 0 0 100%;
   position: relative;

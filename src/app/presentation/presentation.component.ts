@@ -1,4 +1,4 @@
-import {Component, HostListener, OnDestroy, OnInit} from '@angular/core';
+import {Component, HostListener, OnDestroy, OnInit, Renderer2} from '@angular/core';
 import {MenuFooterService} from "../service/menu-footer/menu-footer.service";
 
 @Component({
@@ -9,8 +9,9 @@ import {MenuFooterService} from "../service/menu-footer/menu-footer.service";
 export class PresentationComponent implements OnInit, OnDestroy {
     activeSection: string = '';
     isSidebarHidden: boolean = typeof window !== 'undefined' && window.innerWidth < 768; // Сховати sidebar на мобільних за замовчуванням
+    private backgroundUrl: string = 'assets/back.jpg'; // Шлях до фону
 
-    constructor(private menuFooterService: MenuFooterService) {
+    constructor(private menuFooterService: MenuFooterService, private renderer: Renderer2) {
     }
 
     ngOnInit(): void {
@@ -19,6 +20,16 @@ export class PresentationComponent implements OnInit, OnDestroy {
         if (typeof window !== 'undefined') {
             window.addEventListener('resize', this.onResize.bind(this));
         }
+        if (typeof document !== 'undefined') {
+            const body = document.querySelector('body');
+            if (body) {
+                this.renderer.setStyle(body, 'background-image', `url(${this.backgroundUrl})`);
+                this.renderer.setStyle(body, 'background-size', 'cover');
+                this.renderer.setStyle(body, 'background-position', 'center');
+                this.renderer.setStyle(body, 'background-repeat', 'repeat');
+                this.renderer.setStyle(body, 'background-color', 'black'); // Резервний колір
+            }
+        }
     }
 
     ngOnDestroy(): void {
@@ -26,6 +37,16 @@ export class PresentationComponent implements OnInit, OnDestroy {
         this.menuFooterService.setFooterVisibility(true);
         if (typeof window !== 'undefined') {
             window.removeEventListener('resize', this.onResize.bind(this));
+        }
+        if (typeof document !== 'undefined') {
+            const body = document.querySelector('body');
+            if (body) {
+                this.renderer.removeStyle(body, 'background-image');
+                this.renderer.removeStyle(body, 'background-size');
+                this.renderer.removeStyle(body, 'background-position');
+                this.renderer.removeStyle(body, 'background-repeat');
+                this.renderer.removeStyle(body, 'background-color');
+            }
         }
     }
 
@@ -48,7 +69,8 @@ export class PresentationComponent implements OnInit, OnDestroy {
         this.activeSection = currentSection;
     }
 
-    scrollToSection(sectionId: string, event: Event) {
+    scrollToSection(sectionId: string, event: Event
+    ) {
         event.preventDefault();
         const sectionElement = document.getElementById(sectionId);
 

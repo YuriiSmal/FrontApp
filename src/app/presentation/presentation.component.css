@@ -26,6 +26,7 @@ body {
     top: 0;
     left: 0;
     height: 100%;
+    text-align: center;
     background-color: #333;
     padding-top: 50px;
     transform: translateX(0); /* Sidebar ховається за замовчуванням */
@@ -82,17 +83,26 @@ body {
 
 /* Секції контенту */
 .section {
-    display: flex;
+    margin: 0; /* Видаляє зовнішні відступи */
+    padding: 0; /* Видаляє внутрішні відступи */
+    display: block; /* Забезпечує, що кожна секція займає повну ширину */
+
+    width: 100%; /* Розтягує зображення на всю ширину батьківського контейнера */
+    height: auto; /* Зберігає пропорції */
+    object-fit: cover; /* Забезпечує, щоб зображення заповнювало контейнер без спотворення */
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); /* Тінь для стилізації */
+
+    /*display: flex;*/
     flex-direction: column;
     justify-content: stretch;
     align-items: stretch;
-    height: 100vh; /* Займає всю висоту екрану */
-    padding: 20px;
+    align-self: auto;
+    /*height: 100vh; !* Займає всю висоту екрану *!*/
+
     box-sizing: border-box;
     position: relative;
     scroll-snap-align: start;
     scroll-snap-stop: always;
-    background-color: #f9f9f9;
     z-index: 0;
 }
 
@@ -196,4 +206,25 @@ body {
     .sidebar.hidden + .content {
         margin-left: 0;
     }
+}
+
+.card {
+    border-radius: 8px; /* Округлення кутів */
+}
+
+
+#sideNavContacts {
+    position: fixed;
+    bottom: 0;
+    left: 0;
+    width: 100%; /* Опціонально: повна ширина */
+    text-align: center; /* Вирівнювання тексту */
+    /*background-color: #1b1515; !* Опціонально: фон *!*/
+    padding: 10px; /* Внутрішній відступ */
+}
+
+#sideNavContacts img {
+    position: relative;
+    left: auto;
+    border-radius: 15px
 }

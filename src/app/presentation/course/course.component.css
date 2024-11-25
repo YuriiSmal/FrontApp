@@ -11,6 +11,7 @@
   display: flex;
   flex-wrap: wrap; /* Забезпечує адаптивність для мобільних */
   gap: 20px; /* Проміжок між елементами */
+  border-radius: 8px;
 }
 
 .course-item {

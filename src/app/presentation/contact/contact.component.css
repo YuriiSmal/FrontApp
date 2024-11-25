@@ -20,3 +20,9 @@
     width: 100px; /* Зменшена ширина для мобільних пристроїв */
   }
 }
+
+h2 {
+  position: relative;
+  text-align: center;
+
+}
